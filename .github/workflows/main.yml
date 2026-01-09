@@ -1,0 +1,31 @@
+name: 피카츄-저장소에 푸시될 때마다 테스트 실행
+
+on:
+  push:   # 모든 브랜치에서 push 시 실행
+
+jobs:
+  test-pikacu:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ 레포 체크아웃
+      - name: 피카츄-저장소 코드 가져오기
+        uses: actions/checkout@v4
+
+      # 2️⃣ 파이썬 세팅
+      - name: 피카츄-파이썬 실행 환경 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # 3️⃣ 의존성 설치
+      - name: 피카츄-테스트에 필요한 라이브러리 설치
+        run: |
+          # pip install pytest
+          # pip install requests
+          # pip install jsonschema
+          pip install -r requirements.txt
+
+      # 4️⃣ pytest 실행
+      - name: 피카츄-파이테스트 실행
+        run: pytest
