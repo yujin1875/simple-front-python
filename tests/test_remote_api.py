@@ -13,5 +13,3 @@ def test_remote_get_posts(base_url):
     data = response.json()
     assert "id" in data
     assert data["id"] == 1
-
-# 테스트
